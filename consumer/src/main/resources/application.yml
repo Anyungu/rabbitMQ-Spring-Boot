@@ -1,0 +1,6 @@
+spring:
+    rabbitmq:
+        host: rabbit_mq
+        port: 5672
+        username: mdms_cip
+        password: xxHydYQkEk4CH5Hc9

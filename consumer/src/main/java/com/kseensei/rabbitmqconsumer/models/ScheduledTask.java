@@ -1,4 +1,4 @@
-package com.kseensei.rabbitmqproducer.models;
+package com.kseensei.rabbitmqconsumer.models;
 
 /**
  * ScheduledTask
@@ -23,5 +23,10 @@ public class ScheduledTask {
 
     public void setReceived(Boolean received) {
         this.received = received;
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduledTask [message=" + message + ", received=" + received + "]";
     }
 }

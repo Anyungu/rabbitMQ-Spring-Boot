@@ -11,6 +11,16 @@ services:
       - ./rabbitmq/etc/:/etc/rabbitmq/
       - rabbit_mq_data:/var/
 
+  consumer:
+    build: ./consumer
+    ports:
+      - "8080"
+
+  producer:
+    build: ./producer
+    ports:
+      - "8080"
+
 volumes:
   rabbit_mq_data:
     driver: local
