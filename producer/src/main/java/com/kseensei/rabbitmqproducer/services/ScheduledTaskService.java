@@ -18,7 +18,7 @@ public class ScheduledTaskService {
     @Autowired
     private AmqpSender amqpSender;
 
-    @Scheduled(fixedDelay = 2000)
+    @Scheduled(fixedDelay = 300)
     public void testSendingMessages() {
         UUID uuid = UUID.randomUUID();
         ScheduledTask scheduledTask = new ScheduledTask();

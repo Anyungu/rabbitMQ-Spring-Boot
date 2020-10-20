@@ -1,6 +1,7 @@
 package com.kseensei.rabbitmqconsumer.config;
 
 import com.kseensei.rabbitmqconsumer.controllers.AmqpReceiver;
+import com.kseensei.rabbitmqconsumer.controllers.AmqpSender;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -29,8 +30,18 @@ public class AmqpConfig {
     }
 
     @Bean
+    public Queue retryQueue() {
+        return new Queue("retry-queue", true);
+    }
+
+    @Bean
     public Binding bindNotifications(TopicExchange topic, Queue notificationsQueue) {
         return BindingBuilder.bind(notificationsQueue).to(topic).with("topic.sample" + ".*");
+    }
+
+    @Bean
+    public Binding bindRetries(TopicExchange topic, Queue retryQueue) {
+        return BindingBuilder.bind(retryQueue).to(topic).with("topic.retry" + ".*");
     }
 
     @Bean
@@ -63,5 +74,11 @@ public class AmqpConfig {
     @Bean
     public AmqpReceiver receiver() {
         return new AmqpReceiver();
+    }
+
+
+    @Bean
+    public AmqpSender sender() {
+        return new AmqpSender();
     }
 }
