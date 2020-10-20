@@ -2,4 +2,15 @@ version: "3.3"
 
 services:
   rabbit_mq:
+    image: rabbitmq:3-management
     container_name: rabbit-mq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - ./rabbitmq/etc/:/etc/rabbitmq/
+      - rabbit_mq_data:/var/
+
+volumes:
+  rabbit_mq_data:
+    driver: local
